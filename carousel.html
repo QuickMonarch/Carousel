@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Carousel</title>
+    <style>
+        * {box-sizing: border-box;}
+        body {font-family: Arial, sans-serif; margin: 0; padding: 0;}
+        
+        .carousel-container {
+            position: relative;
+            max-width: 800px; /* Set the maximum width of the carousel */
+            height: 450px; /* Set a fixed height for the carousel */
+            margin: auto;
+            overflow: hidden;
+        }
+        
+        .carousel-slide {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .carousel-slide img {
+            width: 100%; /* Take up full width of the carousel container */
+            height: 100%; /* Take up full height while maintaining aspect ratio */
+            object-fit: contain; /* Ensures images fit without stretching */
+        }
+
+        .carousel-container:hover .prev,
+        .carousel-container:hover .next {
+            opacity: 1;
+        }
+
+        .prev, .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            width: auto;
+            padding: 16px;
+            margin-top: -22px;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            transition: 0.6s ease;
+            border-radius: 0 3px 3px 0;
+            user-select: none;
+        }
+
+        .next {
+            right: 0;
+            border-radius: 3px 0 0 3px;
+        }
+
+        .prev {
+            left: 0;
+        }
+
+        .prev:hover, .next:hover {
+            background-color: rgba(0,0,0,0.8);
+        }
+    </style>
+</head>
+<body>
+
+<div class="carousel-container">
+    <div class="carousel-slide" id="carouselSlide">
+        <img src="WhatsApp Image 2024-10-07 at 12.22.06 PM.jpeg" alt="Image 1">
+        <img src="WhatsApp Image 2024-10-07 at 12.22.06 PM (1).jpeg" alt="Image 2">
+        <img src="WhatsApp Image 2024-10-07 at 12.22.05 PM.jpeg" alt="Image 3">
+        <img src="WhatsApp Image 2024-10-07 at 12.22.05 PM (1).jpeg" alt="Image 4">
+        <img src="WhatsApp Image 2024-10-07 at 12.22.03 PM.jpeg" alt="Image 5">
+        <img src="WhatsApp Image 2024-10-07 at 12.22.02 PM.jpeg" alt="Image 6">
+        <img src="WhatsApp Image 2024-10-07 at 12.22.02 PM (1).jpeg" alt="Image 7">
+        <img src="WhatsApp Image 2024-10-07 at 12.22.01 PM.jpeg" alt="Image 8">
+        <img src="WhatsApp Image 2024-10-07 at 12.22.01 PM (1).jpeg" alt="Image 9">
+        <img src="WhatsApp Image 2024-10-07 at 12.22.00 PM.jpeg" alt="Image 10">
+        <img src="WhatsApp Image 2024-10-07 at 12.21.59 PM.jpeg" alt="Image 11">
+        <img src="WhatsApp Image 2024-10-07 at 12.21.59 PM (1).jpeg" alt="Image 12">
+        <img src="WhatsApp Image 2024-10-07 at 12.21.59 PM (2).jpeg" alt="Image 13">
+        <img src="WhatsApp Image 2024-10-07 at 12.21.58 PM.jpeg" alt="Image 14">
+        <img src="WhatsApp Image 2024-10-07 at 12.21.55 PM.jpeg" alt="Image 15">
+        <img src="WhatsApp Image 2024-10-07 at 12.21.53 PM.jpeg" alt="Image 16">
+        <img src="WhatsApp Image 2024-10-07 at 12.21.29 PM.jpeg" alt="Image 17">
+    </div>
+
+    <!-- Next and previous buttons -->
+    <a class="prev" onclick="moveSlide(-1)">&#10094;</a>
+    <a class="next" onclick="moveSlide(1)">&#10095;</a>
+</div>
+
+<script>
+    let currentSlide = 0;
+    const slides = document.getElementById('carouselSlide');
+    const totalSlides = slides.querySelectorAll('img').length;
+
+    // Move to next or previous slide
+    function moveSlide(n) {
+        currentSlide = (currentSlide + n + totalSlides) % totalSlides;
+        updateSlidePosition();
+    }
+
+    // Update the carousel's slide position
+    function updateSlidePosition() {
+        slides.style.transform = `translateX(-${currentSlide * 100}%)`;
+    }
+
+    // Automatically cycle through slides every 3 seconds
+    setInterval(() => {
+        moveSlide(1);
+    }, 3000);
+</script>
+
+</body>
+</html>
